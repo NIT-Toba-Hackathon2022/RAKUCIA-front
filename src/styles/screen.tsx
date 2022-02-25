@@ -2,7 +2,7 @@ import * as React from 'react';
 import { FC } from 'react';
 
 const Screen: FC = () => {
-  return <></>;
+  return <div>home</div>;
 };
 
 export default Screen;
