@@ -7,12 +7,15 @@ import './style.css';
 
 const Screen: FC = () => {
   const title = <h1 className="title">CRACIA</h1>;
-  const text1 = <h2>作るものを選択してください</h2>;
-  const text2 = <h2>材料リスト</h2>;
+  const text1 = <p className="text">作るものを選択してください</p>;
+  const text2 = <p className="text">材料リスト</p>;
 
   return (
     <div>
       {title}
+      {text1}
+      <hr className="line" />
+      {text2}
       <hr className="line" />
     </div>
   );
