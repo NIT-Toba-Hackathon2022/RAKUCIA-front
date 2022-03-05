@@ -1,18 +1,50 @@
 import * as React from 'react';
-import { FC, useState } from 'react';
+import { FC, useState, useEffect } from 'react';
+import liff from '@line/liff';
 
 import Checkbox from '@mui/material/Checkbox';
 
+import gql from 'graphql-tag';
+import client from '../utils/apollo';
 import './style.css';
 
 //userが選択した料理をAPIから受け取り、リストで表示するコンポーネント
-
 const Choosemenu = () => {
   const [checked, setChecked] = useState(false);
-
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setChecked(event.target.checked);
   };
+
+  useEffect(() => {
+    liff.ready.then(() => {
+      liff
+        .init({ liffId: process.env.REACT_APP_LIFF_ID as string })
+        .then(() => {
+          liff.getProfile().then((profile) => {
+            client
+              .query({
+                query: gql`
+                query {
+                  createList(user_id: ${profile.userId}) {
+                    id
+                    user_id
+                    recipe_title
+                    recipe_url
+                    image_url
+                    recipe_material
+                    recipe_indication
+                    recipe_cost
+                    add_to_list
+                    leave_flag
+                  }
+                }
+              `,
+              })
+              .then((result) => console.log(result));
+          });
+        });
+    });
+  });
   return (
     <div>
       <Checkbox checked={checked} onChange={handleChange} />
