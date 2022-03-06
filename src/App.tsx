@@ -17,8 +17,9 @@ const App: FC = () => {
   }, []);
   return (
     <div>
-      <Router>
+      <Router basename={process.env.PUBLIC_URL}>
         <Routes>
+          <Route element={<Screen />} />
           <Route path="/" element={<Screen />} />
         </Routes>
       </Router>
