@@ -22,7 +22,7 @@ export const Food: VFC<FoodProps> = ({
   recipe_indication,
   recipe_cost,
 }) => {
-  const [updateFood, { loading, error, data }] = useMutation(UPDATEFOOD);
+  //const [updateFood, { loading, error, data }] = useMutation(UPDATEFOOD);
   return (
     <Box p={4} display={"flex"}>
       <Box flexShrink={0}>
@@ -59,14 +59,14 @@ export const Food: VFC<FoodProps> = ({
         </Box>
       </Box>
       <button
-        onClick={() =>
+        /*onClick={() =>
           updateFood({
             variables: {
               id: id,
               update_data: { add_to_list: 1, leave_flag: 0 },
             },
           })
-        }
+        }*/
       >
         <Checkbox w={2} colorScheme="orange" />
       </button>
