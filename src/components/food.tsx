@@ -1,7 +1,7 @@
 import React, { type VFC } from "react";
 import { Box, Image, Text, Link, Icon, Checkbox } from "@chakra-ui/react";
 import { TimeIcon } from "@chakra-ui/icons";
-import { useLazyQuery } from "@apollo/client";
+import { useMutation } from "@apollo/client";
 import { RiMoneyCnyCircleLine } from "react-icons/ri";
 import { UPDATEFOOD } from "../querys/updateFood";
 
@@ -22,7 +22,7 @@ export const Food: VFC<FoodProps> = ({
   recipe_indication,
   recipe_cost,
 }) => {
-  const [updateFood, { loading, error, data }] = useLazyQuery(UPDATEFOOD);
+  const [updateFood, { loading, error, data }] = useMutation(UPDATEFOOD);
   return (
     <Box p={4} display={"flex"}>
       <Box flexShrink={0}>
@@ -58,9 +58,7 @@ export const Food: VFC<FoodProps> = ({
           </Text>
         </Box>
       </Box>
-      <Checkbox
-        w={2}
-        colorScheme="orange"
+      <button
         onClick={() =>
           updateFood({
             variables: {
@@ -69,7 +67,9 @@ export const Food: VFC<FoodProps> = ({
             },
           })
         }
-      />
+      >
+        <Checkbox w={2} colorScheme="orange" />
+      </button>
     </Box>
   );
 };

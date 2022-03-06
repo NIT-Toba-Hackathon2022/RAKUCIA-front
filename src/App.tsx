@@ -1,15 +1,16 @@
-import React from 'react';
-import liff from '@line/liff';
-import { ApolloProvider } from '@apollo/client';
-import { client } from './utils/apollo';
+import * as React from "react";
+import { ApolloProvider } from "@apollo/client";
+import { appClient } from "./utils/apollo";
+import { ChakraProvider } from "@chakra-ui/react";
 
 const App = () => {
-
   return (
-    <ApolloProvider client={client}>
-      <h1>hello</h1>
+    <ApolloProvider client={appClient}>
+      <ChakraProvider resetCSS>
+        <p>すみません実装が間に合いませんでした😭</p>
+      </ChakraProvider>
     </ApolloProvider>
   );
-}
+};
 
 export default App;
