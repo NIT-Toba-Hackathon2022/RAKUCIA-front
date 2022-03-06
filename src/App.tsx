@@ -1,29 +1,15 @@
-import * as React from 'react';
-import { FC, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import liff from '@line/liff';
-import Screen from './styles/screen';
-const App: FC = () => {
-  useEffect(() => {
-    liff.ready.then(() => {
-      liff
-        .init({ liffId: process.env.REACT_APP_LIFF_ID as string })
-        .then(() => {
-          if (!liff.isLoggedIn()) {
-            liff.login();
-          }
-        });
-    });
-  }, []);
+import * as React from "react";
+import { ApolloProvider } from "@apollo/client";
+import { appClient } from "./utils/apollo";
+import { ChakraProvider } from "@chakra-ui/react";
+
+const App = () => {
   return (
-    <div>
-      <Router basename={process.env.PUBLIC_URL}>
-        <Routes>
-          <Route element={<Screen />} />
-          <Route path="/" element={<Screen />} />
-        </Routes>
-      </Router>
-    </div>
+    <ApolloProvider client={appClient}>
+      <ChakraProvider resetCSS>
+        <p>すみません実装が間に合いませんでした😭</p>
+      </ChakraProvider>
+    </ApolloProvider>
   );
 };
 

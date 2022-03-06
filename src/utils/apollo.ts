@@ -1,18 +1,26 @@
-import { ApolloClient, InMemoryCache, HttpLink } from '@apollo/client';
-import liff from '@line/liff';
-import gql from 'graphql-tag';
+import {
+  InMemoryCache,
+  ApolloLink,
+  ApolloClient,
+  createHttpLink,
+} from "@apollo/client";
+import { onError } from "apollo-link-error";
 
-const cache = new InMemoryCache();
-const link = new HttpLink({
-  uri: 'https://toba.re-taro.dev/graphql',
-  fetchOptions: {
-    mode: 'no-cors',
-  },
+const httpLink = createHttpLink({
+  uri: "https://toba.re-taro.dev/graphql",
 });
 
-const client = new ApolloClient({
-  cache,
-  link,
+const errorLink = onError(({ graphQLErrors, networkError }) => {
+  if (graphQLErrors)
+    graphQLErrors.map(({ message, locations, path }) =>
+      console.log(
+        `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`
+      )
+    );
+  if (networkError) console.log(`[Network error]: ${networkError}`);
 });
 
-export default client;
+export const appClient = new ApolloClient({
+  link: ApolloLink.from([httpLink, errorLink]),
+  cache: new InMemoryCache(),
+});
