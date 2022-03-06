@@ -4,7 +4,7 @@ import {
   ApolloClient,
   createHttpLink,
 } from "@apollo/client";
-import { onError } from "apollo-link-error";
+//import { onError } from "apollo-link-error";
 
 const httpLink = createHttpLink({
   uri: "https://toba.re-taro.dev/graphql",
