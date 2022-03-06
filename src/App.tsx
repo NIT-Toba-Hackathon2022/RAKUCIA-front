@@ -6,9 +6,9 @@ import { ChakraProvider } from "@chakra-ui/react";
 const App = () => {
   return (
     <ApolloProvider client={appClient}>
-      <ChakraProvider resetCSS>
+      {/*<ChakraProvider resetCSS>*/}
         <p>すみません実装が間に合いませんでした😭</p>
-      </ChakraProvider>
+      {/*</ApolloProvider></ChakraProvider>*/}
     </ApolloProvider>
   );
 };
