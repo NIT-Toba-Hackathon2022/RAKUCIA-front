@@ -1,5 +1,5 @@
 import React, { type VFC } from "react";
-import { Box, Image, Text, Link, Icon, Checkbox } from "@chakra-ui/react";
+/*import { Box, Image, Text, Link, Icon, Checkbox } from "@chakra-ui/react";
 import { TimeIcon } from "@chakra-ui/icons";
 import { useMutation } from "@apollo/client";
 import { RiMoneyCnyCircleLine } from "react-icons/ri";
@@ -59,17 +59,18 @@ export const Food: VFC<FoodProps> = ({
         </Box>
       </Box>
       <button
-        /*onClick={() =>
+        onClick={() =>
           updateFood({
             variables: {
               id: id,
               update_data: { add_to_list: 1, leave_flag: 0 },
             },
           })
-        }*/
+        }
       >
         <Checkbox w={2} colorScheme="orange" />
       </button>
     </Box>
   );
 };
+*/
