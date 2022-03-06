@@ -1,7 +1,9 @@
 import React, { type VFC } from "react";
-import { Box, Image, Text, Link, Icon } from "@chakra-ui/react";
-import { TimeIcon } from '@chakra-ui/icons'
+import { Box, Image, Text, Link, Icon, Checkbox } from "@chakra-ui/react";
+import { TimeIcon } from "@chakra-ui/icons";
+import { useLazyQuery } from "@apollo/client";
 import { RiMoneyCnyCircleLine } from "react-icons/ri";
+import { UPDATEFOOD } from "../querys/updateFood";
 
 export type FoodProps = {
   id: number;
@@ -20,6 +22,7 @@ export const Food: VFC<FoodProps> = ({
   recipe_indication,
   recipe_cost,
 }) => {
+  const [updateFood, { loading, error, data }] = useLazyQuery(UPDATEFOOD);
   return (
     <Box p={4} display={"flex"}>
       <Box flexShrink={0}>
@@ -44,13 +47,29 @@ export const Food: VFC<FoodProps> = ({
         </Link>
         <Box display={"flex"} alignItems={"center"}>
           <TimeIcon w={5} h={5} />
-          <Text fontSize="xl" color="gray.500">{recipe_indication}</Text>
+          <Text fontSize="xl" color="gray.500">
+            {recipe_indication}
+          </Text>
         </Box>
         <Box display={"flex"} alignItems={"center"}>
           <Icon as={RiMoneyCnyCircleLine} w={6} h={6} />
-          <Text fontSize="xl" color="gray.500">{recipe_cost}</Text>
+          <Text fontSize="xl" color="gray.500">
+            {recipe_cost}
+          </Text>
         </Box>
       </Box>
+      <Checkbox
+        w={2}
+        colorScheme="orange"
+        onClick={() =>
+          updateFood({
+            variables: {
+              id: id,
+              update_data: { add_to_list: 1, leave_flag: 0 },
+            },
+          })
+        }
+      />
     </Box>
   );
 };
