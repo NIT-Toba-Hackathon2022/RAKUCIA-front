@@ -10,7 +10,7 @@ const httpLink = createHttpLink({
   uri: "https://toba.re-taro.dev/graphql",
 });
 
-const errorLink = onError(({ graphQLErrors, networkError }) => {
+/*const errorLink = onError(({ graphQLErrors, networkError }) => {
   if (graphQLErrors)
     graphQLErrors.map(({ message, locations, path }) =>
       console.log(
@@ -18,9 +18,9 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
       )
     );
   if (networkError) console.log(`[Network error]: ${networkError}`);
-});
+});*/
 
 export const appClient = new ApolloClient({
-  link: ApolloLink.from([httpLink, errorLink]),
+  link: ApolloLink.from([httpLink, /*errorLink*/]),
   cache: new InMemoryCache(),
 });
