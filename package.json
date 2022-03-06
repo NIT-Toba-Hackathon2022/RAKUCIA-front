@@ -1,7 +1,7 @@
 {
   "name": "rakucia",
   "version": "0.1.0",
-  "homepage": "https://Sansai-snct.github.io/NIT-Toba-Hackathon2022/RAKUCIA-front/",
+  "homepage": "./",
   "private": true,
   "dependencies": {
     "@apollo/react-hooks": "^4.0.0",
