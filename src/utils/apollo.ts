@@ -4,7 +4,7 @@ import gql from 'graphql-tag';
 
 const cache = new InMemoryCache();
 const link = new HttpLink({
-  uri: 'https://toba.re-taro.dev/graphql/',
+  uri: 'https://toba.re-taro.dev/graphql',
   fetchOptions: {
     mode: 'no-cors',
   },
